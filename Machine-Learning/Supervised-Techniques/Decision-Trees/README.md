@@ -27,25 +27,25 @@ Decision Trees are a supervised machine learning technique used for both **class
 The objective of a Decision Tree is to find splits that maximize information gain or minimize impurity/variance. For example:
 
 1. **Gini Index** (Classification):
-   $\
+   \[
    Gini = 1 - \sum_{i=1}^n (p_i)^2
-   $
+   \]
    Where \(p_i\) is the proportion of class \(i\) in a node.
 
 2. **Entropy and Information Gain**:
    - **Entropy**:
-     $\
+     \[
      Entropy = -\sum_{i=1}^n p_i \log_2(p_i)
-     $
+     \]
    - **Information Gain**:
-     $\
-     Information Gain = $Entropy_{parent} - \sum_{i=1}^n $\($\frac{|child_i|}{|parent|} Entropy_{child_i})
-     $
+     \[
+     Information\ Gain = Entropy_{parent} - \sum_{i=1}^n \frac{|child_i|}{|parent|} Entropy_{child_i}
+     \]
 
 3. **MSE (Regression)**:
-   $\
-   MSE = \frac{1}{n} \sum_{i=1}^n y_i - \hat{y}^2
-   $
+   \[
+   MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2
+   \]
 
 ---
 
@@ -75,5 +75,21 @@ The objective of a Decision Tree is to find splits that maximize information gai
 
 3. **Bias Toward Features with Many Levels**:
    - Features with many unique values may dominate splits, even if they are not the most predictive.
+
+---
+
+## Applications of Decision Trees
+
+1. **Healthcare**:
+   - Diagnosing diseases based on patient symptoms.
+
+2. **Finance**:
+   - Credit scoring and fraud detection.
+
+3. **Retail**:
+   - Customer segmentation and product recommendations.
+
+4. **Education**:
+   - Predicting student performance based on prior grades.
 
 ---
