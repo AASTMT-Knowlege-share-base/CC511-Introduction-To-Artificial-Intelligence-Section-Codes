@@ -1,0 +1,109 @@
+### Problem Overview
+We are tasked with solving a murder case involving three suspects: Adams (A), Brown (B), and Clark (C). The following information is given:
+1. Adams, Brown, and Clark each claim they did not commit the murder.
+2. Two innocent suspects are truthful, while the guilty suspect might not be truthful.
+3. Exactly one suspect is guilty.
+
+---
+
+### Logical Translation of Statements
+We translate each suspect's statement into propositional logic:
+
+#### Adams’ Statement:
+- "I didn’t do it." → \( \neg G_A \)
+- "The victim was an old acquaintance of Brown’s." → \( F(B, V) \)
+- "Clark hated the victim." → \( H(C, V) \)
+
+Thus:
+\[
+\neg G_A \rightarrow (F(B, V) \land H(C, V))
+\]
+
+#### Brown’s Statement:
+- "I didn’t do it." → \( \neg G_B \)
+- "I didn’t know the guy." → \( \neg K(B, V) \)
+- "I was out of town all week." → \( O(B) \)
+
+Thus:
+\[
+\neg G_B \rightarrow (\neg K(B, V) \land O(B))
+\]
+
+#### Clark’s Statement:
+- "I didn’t do it." → \( \neg G_C \)
+- "I saw both Adams and Brown downtown with the victim that day." → \( W(A, V) \land W(B, V) \)
+- "One of them must have done it." → \( G_A \lor G_B \)
+
+Thus:
+\[
+\neg G_C \rightarrow ((W(A, V) \land W(B, V)) \land (G_A \lor G_B))
+\]
+
+---
+
+### Logical Framework
+1. **Key assumption**: Two innocent suspects tell the truth; the guilty suspect may lie.
+2. **Exclusive OR**: Exactly one suspect is guilty:
+\[
+G_A \oplus G_B \oplus G_C
+\]
+
+---
+
+### Case Analysis
+We analyze each possibility (\( G_A, G_B, G_C \)) assuming only one suspect is guilty and check for logical consistency.
+
+#### Case 1: Adams is Guilty (\( G_A \))
+- Adams' statement is unreliable.
+- Brown (\( \neg G_B \)) and Clark (\( \neg G_C \)) are innocent:
+  - Brown’s statement is true:
+    \[
+    \neg K(B, V) \land O(B)
+    \]
+  - Clark’s statement is true:
+    \[
+    W(A, V) \land W(B, V) \land (G_A \lor G_B)
+    \]
+
+**Contradiction**: If Clark is truthful, \( G_A \lor G_B \) cannot hold because \( G_A \) is true, making Clark's statement invalid.
+
+Thus, **Adams cannot be guilty**.
+
+---
+
+#### Case 2: Brown is Guilty (\( G_B \))
+- Brown's statement is unreliable.
+- Adams (\( \neg G_A \)) and Clark (\( \neg G_C \)) are innocent:
+  - Adams' statement is true:
+    \[
+    F(B, V) \land H(C, V)
+    \]
+  - Clark’s statement is true:
+    \[
+    W(A, V) \land W(B, V) \land (G_A \lor G_B)
+    \]
+
+No contradictions arise. Thus, **Brown can be guilty**.
+
+---
+
+#### Case 3: Clark is Guilty (\( G_C \))
+- Clark's statement is unreliable.
+- Adams (\( \neg G_A \)) and Brown (\( \neg G_B \)) are innocent:
+  - Adams’ statement is true:
+    \[
+    F(B, V) \land H(C, V)
+    \]
+  - Brown’s statement is true:
+    \[
+    \neg K(B, V) \land O(B)
+    \]
+
+**Contradiction**: If Clark is guilty, \( W(A, V) \land W(B, V) \) (Clark’s observation) cannot be true, as both Adams and Brown are innocent.
+
+Thus, **Clark cannot be guilty**.
+
+---
+
+### Conclusion
+The only consistent case is when **Brown (B)** is guilty. Therefore, the guilty party is **Brown**.
